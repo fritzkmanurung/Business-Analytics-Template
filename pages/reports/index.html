@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
 </head>
 
 <body>
@@ -49,10 +50,10 @@
                 </ul>
             </nav>
 
-      <header class="page-header">
-        <div class="header-actions">
-        </div>
-      </header>
+            <header class="page-header">
+                <div class="header-actions">
+                </div>
+            </header>
         </aside>
 
         <!-- Mobile Menu Toggle -->
@@ -143,24 +144,25 @@
         <!-- Main Content -->
         <main class="main-content">
             <nav class="breadcrumb">
-                <div class="breadcrumb-item"><a href="../dashboard/index.html"><i class="fas fa-home"></i> Home</a></div><span
-                    class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                <div class="breadcrumb-item"><a href="../dashboard/index.html"><i class="fas fa-home"></i> Home</a>
+                </div><span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
                 <div class="breadcrumb-item active">Reports</div>
             </nav>
 
             <!-- Page Header -->
-        <div class="header-actions" style="margin-bottom: var(--spacing-md); display: flex; justify-content: flex-end; gap: var(--spacing-sm);">
-          <button class="button button-secondary" onclick="exportToCSV()">
-            <i class="fas fa-file-csv"></i> Export CSV
-          </button>
-          <button class="button button-secondary" onclick="exportToExcel()">
-            <i class="fas fa-file-excel"></i> Export Excel
-          </button>
-          <button class="button button-primary" onclick="window.location.href='../reports/generate.html'">
-            <i class="fas fa-plus"></i> Generate Report
-          </button>
-        </div>
-            
+            <div class="header-actions"
+                style="margin-bottom: var(--spacing-md); display: flex; justify-content: flex-end; gap: var(--spacing-sm);">
+                <button class="button button-secondary" onclick="exportToCSV()">
+                    <i class="fas fa-file-csv"></i> Export CSV
+                </button>
+                <button class="button button-secondary" onclick="exportToExcel()">
+                    <i class="fas fa-file-excel"></i> Export Excel
+                </button>
+                <button class="button button-primary" onclick="window.location.href='../reports/generate.html'">
+                    <i class="fas fa-plus"></i> Generate Report
+                </button>
+            </div>
+
 
             <!-- Filter Section -->
             <section class="card card-glass mb-2">

@@ -5,6 +5,17 @@
 > **Professional, Clean, & Interactive Business Analytics Dashboard**
 > *A modern, vanilla HTML/CSS/JS template crafted for performance and clarity.*
 
+<div align="center">
+
+[![Live Preview](https://img.shields.io/badge/🚀_Live_Preview-Visit_Demo-2ea44f?style=for-the-badge&logo=vercel)](https://business-analytics-template.vercel.app)
+
+</div>
+
+<div align="center" style="display: flex; gap: 10px;">
+    <img src="assets/darkmode.png" alt="Dark Mode Preview" width="48%">
+    <img src="assets/lightmode.png" alt="Light Mode Preview" width="48%">
+</div>
+
 ---
 
 ## 🌟 Overview

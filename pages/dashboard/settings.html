@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
 </head>
 
 <body>
@@ -49,10 +50,10 @@
                 </ul>
             </nav>
 
-      <header class="page-header">
-        <div class="header-actions">
-        </div>
-      </header>
+            <header class="page-header">
+                <div class="header-actions">
+                </div>
+            </header>
         </aside>
 
         <!-- Mobile Menu Toggle -->
@@ -134,7 +135,7 @@
                                     class="fas fa-cog"></i><span>Settings</span></li>
                             <li class="profile-dropdown-item logout" onclick="logout()"><i
                                     class="fas fa-sign-out-alt"></i><span>Logout</span>
-                </ul>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -142,10 +143,14 @@
 
         <!-- Main Content -->
         <main class="main-content">
-      <nav class="breadcrumb"><div class="breadcrumb-item"><a href="../dashboard/index.html"><i class="fas fa-home"></i> Home</a></div><span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span><div class="breadcrumb-item active">Settings</div></nav>
+            <nav class="breadcrumb">
+                <div class="breadcrumb-item"><a href="../dashboard/index.html"><i class="fas fa-home"></i> Home</a>
+                </div><span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                <div class="breadcrumb-item active">Settings</div>
+            </nav>
 
-      <!-- Page Header -->
-            
+            <!-- Page Header -->
+
 
             <div class="grid grid-cols-3">
                 <!-- Settings Navigation -->
@@ -176,7 +181,7 @@
                                             <i class="fas fa-bell"></i>
                                             <span>Notifications</span>
                                         </a>
-                </ul>
+                                </ul>
                             </nav>
                         </div>
                     </div>
@@ -202,8 +207,7 @@
                                             dark theme across the application</div>
                                     </div>
                                     <label class="toggle-switch">
-                                        <input type="checkbox" checked
-                                            id="darkModeToggle">
+                                        <input type="checkbox" checked id="darkModeToggle">
                                         <span class="toggle-slider"></span>
                                     </label>
                                 </div>
@@ -484,7 +488,7 @@
             showToast(`Viewing ${sectionId} settings`, 'info');
         }
     </script>
-  <script src="../../js/theme.js"></script>
+    <script src="../../js/theme.js"></script>
 </body>
 
 </html>
