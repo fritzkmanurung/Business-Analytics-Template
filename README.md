@@ -1,102 +1,107 @@
 # 📊 AnalytixPro - Business Analytics Dashboard Template
 
+![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Version](https://img.shields.io/badge/version-1.0.0-green.svg) ![Dependencies](https://img.shields.io/badge/dependencies-none-success.svg)
+
 > **Professional, Clean, & Interactive Business Analytics Dashboard**
-> *Modern vanilla HTML/CSS/JS template for analytics applications*
+> *A modern, vanilla HTML/CSS/JS template crafted for performance and clarity.*
+
+---
 
 ## 🌟 Overview
 
-**AnalytixPro** adalah template dashboard analitik bisnis yang dirancang dengan **HTML, CSS, dan JavaScript murni (Vanilla)**. Template ini menawarkan antarmuka yang bersih, responsif, dan profesional tanpa ketergantungan pada framework JavaScript berat seperti React atau Vue.
+**AnalytixPro** is a premium-quality business analytics dashboard template built entirely with **Vanilla HTML, CSS, and JavaScript**. It delivers a sleek, responsive, and professional interface without the bloat of heavy frameworks like React or Vue.
 
-Template ini sangat cocok untuk:
-- 📈 Dashboard Analitik & Reporting
-- 🛍️ E-commerce Admin Panel
-- 👥 User & Segment Management
-- 💼 SAAS Application Starter
+**Perfect for:**
+- 📈 Analytics & Reporting Dashboards
+- 🛍️ E-commerce Admin Panels
+- 👥 User & Segmentation Management
+- 💼 SAAS Application Starters
 
 ---
 
 ## 🚀 Key Features
 
-*   **⚡ Zero Dependencies:** Dibangun dengan Vanilla JS & CSS. Ringan dan cepat.
-*   **🎨 Theme Support:** **Light Mode** & **Dark Mode** toggle yang persisten.
-*   **📱 Fully Responsive:** Tampilan mobile-friendly dengan sidebar toggle halus.
-*   **📊 Interactive Charts:** Integrasi **Chart.js** yang dioptimalkan untuk tema terang/gelap (auto-adjust colors).
-*   **📂 Organized Structure:** Struktur folder yang rapih dan modular (`pages/`, `layouts/`, `assets/`).
-*   **🔍 Interactive Tables:** Sorting, Pagination, dan Filtering siap pakai.
-*   **🔔 Notifications:** Toast notification system built-in.
+*   **⚡ Zero Dependencies:** Built with pure Vanilla JS & CSS. Blazing fast performance.
+*   **🎨 Dynamic Theming:** Persistent **Light Mode** & **Dark Mode** support.
+*   **📱 Fully Responsive:** Adaptive layout with smooth mobile sidebar toggle.
+*   **📊 Interactive Charts:** Integrated **Chart.js** with theme-aware color adaptation.
+*   **📂 Structured Architecture:** Professional, modular file organization (`pages/`, `layouts/`, `assets/`).
+*   **🔍 Power Tables:** Built-in Sorting, Pagination, and Advanced Filtering.
+*   **🔔 Smart Notifications:** Integrated Toast notification system.
 
 ---
 
 ## 📂 Project Structure
 
-Struktur file disusun secara profesional berdasarkan kategori untuk memudahkan maintenance:
+Organized for scalability and ease of maintenance:
 
 ### 📄 Pages (`/pages`)
-Halaman-halaman utama aplikasi dikelompokkan berdasarkan fungsinya:
+Core application pages categorized by function:
 
 | Directory | File | Description |
 |-----------|------|-------------|
-| **`dashboard/`** | `index.html` | **Main Dashboard**. Berisi summary cards, grafik pendapatan/aktivitas, dan recent activities. |
-| | `settings.html` | Halaman pengaturan aplikasi termasuk **Dark Mode toggle**. |
-| **`reports/`** | `index.html` | **Transaction List**. Tabel lengkap dengan sorting, filtering, dan pagination. |
-| | `generate.html` | Form untuk membuat laporan baru dengan validasi input. |
-| | `view.html` | Halaman detail transaksi/laporan spesifik. |
-| **`segments/`** | `index.html` | **Segmentation Tool**. Halaman filter lanjutan untuk data analisis. |
-| | `create.html` | Form wizard untuk membuat segmen pengguna baru. |
-| | `edit.html` | Interface edit untuk segmen yang sudah ada. |
-| **`user/`** | `profile.html` | Halaman profil pengguna dengan editable fields. |
-| | `help.html` | Pusat bantuan/FAQ dengan navigasi accordion. |
-| **`auth/`** | `login.html` | Halaman login responsive. |
-| | `register.html` | Halaman pendaftaran akun baru. |
+| **`dashboard/`** | `index.html` | **Main Dashboard**. KPI cards, revenue analytics, and activity feeds. |
+| | `settings.html` | Application settings including **Theme, Profile, & API Keys**. |
+| **`reports/`** | `index.html` | **Transaction List**. Full-featured data table with export options. |
+| | `generate.html` | Creation form with input validation. |
+| | `view.html` | Detailed view for individual transactions/reports. |
+| **`segments/`** | `index.html` | **Segmentation Tool**. Advanced filtering interface. |
+| | `create.html` | Wizard for creating new user segments. |
+| | `edit.html` | Edit interface for existing segments. |
+| **`user/`** | `profile.html` | User profile management. |
+| | `help.html` | Help center / FAQ with accordion navigation. |
+| **`auth/`** | `login.html` | Responsive login page. |
+| | `register.html` | New account registration page. |
 
 ### 🛠️ Layouts & Scripts (`/layouts`, `/css`, `/js`)
-Komponen pendukung dan logika aplikasi:
+Core logic and reusable components:
 
 | File | Description |
 |------|-------------|
-| **`css/style.css`** | **Style Utama**. Berisi CSS variables (colors, spacing), layout grid, utility classes, dan styling komponen UI. |
-| **`js/main.js`** | Utility functions global (seperti Toast notifications, format currency helpers). |
-| **`js/theme.js`** | Menangani logika **Dark/Light Mode** dan persistensi ke `localStorage`. |
-| **`js/charts.js`** | Konfigurasi **Chart.js**. Menangani grafik pendapatan dan aktivitas dengan pewarnaan dinamis. |
-| **`js/datatable.js`** | Logika inti untuk interaksi tabel (Sorting, Pagination, Rows per page). |
-| **`js/data.js`** | Dummy data generator untuk simulasi backend dan handling export CSV/Excel. |
-| **`js/header.js`** | Menangani interaksi header (Dropdown profil, Notifikasi popup). |
-| **`layouts/header.html`** | Komponen header yang dapat digunakan kembali (snippet referensi). |
+| **`css/style.css`** | **Master Stylesheet**. CSS variables, grid layouts, and component styles. |
+| **`js/main.js`** | Global utilities (Toast notifications, formatters). |
+| **`js/theme.js`** | **Dark/Light Mode** logic with `localStorage` persistence. |
+| **`js/charts.js`** | **Chart.js** config. Handles dynamic coloring based on active theme. |
+| **`js/datatable.js`** | Core logic for Table Sorting, Pagination, and Filtering. |
+| **`js/data.js`** | Mock data generator & Export handlers (CSV/Excel). |
+| **`js/header.js`** | Header interactions (Profile dropdown, Notifications). |
+| **`layouts/header.html`** | Reusable header component reference. |
 
 ---
 
 ## 🔧 Getting Started
 
-1.  **Clone/Download** project ini.
-2.  Buka `index.html` yang berada di folder root di browser Anda.
-3.  Anda akan diarahkan otomatis ke halaman **Dashboard** (`pages/dashboard/index.html`).
-4.  Jelajahi fitur-fitur seperti:
-    *   **Toggle Theme:** Pergi ke Settings > Dark Mode.
-    *   **Reports Table:** Coba sorting kolom atau ganti halaman di menu Reports.
-    *   **Export Data:** Coba tombol Export di halaman Reports.
+1.  **Clone or Download** the project.
+2.  Open the root `index.html` in your web browser.
+3.  You will be automatically redirected to the **Dashboard** (`pages/dashboard/index.html`).
+4.  **Explore:**
+    *   **Toggle Theme:** Go to Settings to switch between Dark & Light modes.
+    *   **Analyze:** Sort columns or page through data in the Reports section.
+    *   **Export:** Try the export functionality to download CSV/Excel reports.
 
 ---
 
 ## 💡 Customization Guide
 
-### Mengganti Warna Tema
-Edit root variables di bagian atas file `css/style.css`:
+### 🎨 Changing the Theme Colors
+Modify the root CSS variables in `css/style.css` to match your brand:
 ```css
 :root {
-  --color-primary: #your-color;
+  --color-primary: #2563eb; /* Your Brand Color */
+  --bg-primary: #ffffff;    /* Light Background */
   /* ... */
 }
 ```
 
-### Mengubah Data Dummy
-Edit `js/data.js` untuk mengganti `sampleTransactions` dengan data real dari API Anda:
+### 💾 Switching to Real Data
+Update `js/data.js` to replace the mock data with your API response:
 ```javascript
 // js/data.js
 const sampleTransactions = [
-  // Masukkan data Anda di sini
+  // Fetch from your API instead
 ];
 ```
 
 ---
 
-*Dibuat dengan ❤️ untuk memudahkan pengembangan dashboard bisnis yang elegan.*
+*Crafted with precision for elegant business solutions.*
