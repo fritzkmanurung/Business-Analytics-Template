@@ -1,13 +1,13 @@
 <div align="center">
-    <img src="assets/favicon.png" alt="AnalytixPro Logo" width="80" height="80">
-    <h1>AnalytixPro - Business Analytics Dashboard Template</h1>
-    
-    ![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Version](https://img.shields.io/badge/version-1.0.0-green.svg) ![Dependencies](https://img.shields.io/badge/dependencies-none-success.svg)
+<img src="assets/favicon.png" alt="AnalytixPro Logo" width="80" height="80">
+<h1>AnalytixPro - Business Analytics Dashboard Template</h1>
 
-    <br>
+![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Version](https://img.shields.io/badge/version-1.0.0-green.svg) ![Dependencies](https://img.shields.io/badge/dependencies-none-success.svg)
 
-    <h3>Professional, Clean, & Interactive Business Analytics Dashboard</h3>
-    <p><i>A modern, vanilla HTML/CSS/JS template crafted for performance and clarity.</i></p>
+<br>
+
+<h3>Professional, Clean, & Interactive Business Analytics Dashboard</h3>
+<p><i>A modern, vanilla HTML/CSS/JS template crafted for performance and clarity.</i></p>
 </div>
 
 <div align="center">
