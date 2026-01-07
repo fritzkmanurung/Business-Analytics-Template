@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Business Analytics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">AnalytixPro</div>
+            </div>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="../dashboard/index.html" class="nav-link">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../reports/index.html" class="nav-link">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../segments/index.html" class="nav-link">
+                            <i class="fas fa-filter"></i>
+                            <span>Filters & Segments</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../user/help.html" class="nav-link">
+                            <i class="fas fa-question-circle"></i>
+                            <span>Help</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+      <header class="page-header">
+        <div class="header-actions">
+        </div>
+      </header>
+        </aside>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Top Header Bar -->
+        <header class="top-header">
+            <div class="header-left">
+            </div>
+
+            <div class="header-right">
+                <!-- Notifications -->
+                <div style="position: relative;">
+                    <button class="header-icon-button" id="notificationButton">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <div class="notification-popup" id="notificationPopup">
+                        <div class="notification-header">
+                            <span class="notification-title">Notifications</span>
+                            <a href="#" onclick="markAllAsRead(); return false;"
+                                style="font-size: var(--font-size-xs); color: var(--color-primary);">Mark all as
+                                read</a>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item unread">
+                                <div class="notification-content">
+                                    <div class="notification-icon success"><i class="fas fa-check"></i></div>
+                                    <div class="notification-text">
+                                        <div class="notification-message">Report generated successfully</div>
+                                        <div class="notification-time">5 minutes ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-content">
+                                    <div class="notification-icon info"><i class="fas fa-info"></i></div>
+                                    <div class="notification-text">
+                                        <div class="notification-message">New data import completed</div>
+                                        <div class="notification-time">1 hour ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-content">
+                                    <div class="notification-icon warning"><i class="fas fa-exclamation"></i></div>
+                                    <div class="notification-text">
+                                        <div class="notification-message">Server response time increased</div>
+                                        <div class="notification-time">2 hours ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notification-footer"><a href="#">View all notifications</a></div>
+                    </div>
+                </div>
+
+                <!-- User Profile -->
+                <div style="position: relative;">
+                    <div class="user-profile" id="profileButton">
+                        <div class="user-avatar">JS</div>
+                        <div class="user-info">
+                            <div class="user-name">John Smith</div>
+                            <div class="user-role">Administrator</div>
+                        </div>
+                        <i class="fas fa-chevron-down" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                    </div>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <div class="profile-dropdown-header">
+                            <div class="profile-dropdown-name">John Smith</div>
+                            <div class="profile-dropdown-email">john.smith@example.com</div>
+                        </div>
+                        <ul class="profile-dropdown-menu">
+                            <li class="profile-dropdown-item" onclick="navigateToProfile()"><i
+                                    class="fas fa-user"></i><span>My Profile</span></li>
+                            <li class="profile-dropdown-item" onclick="navigateToSettings()"><i
+                                    class="fas fa-cog"></i><span>Settings</span></li>
+                            <li class="profile-dropdown-item logout" onclick="logout()"><i
+                                    class="fas fa-sign-out-alt"></i><span>Logout</span>
+                </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+      <nav class="breadcrumb"><div class="breadcrumb-item"><a href="../dashboard/index.html"><i class="fas fa-home"></i> Home</a></div><span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span><div class="breadcrumb-item active">Settings</div></nav>
+
+      <!-- Page Header -->
+            
+
+            <div class="grid grid-cols-3">
+                <!-- Settings Navigation -->
+                <div style="grid-column: span 1;">
+                    <div class="card card-glass" style="position: sticky; top: var(--spacing-lg);">
+                        <div class="card-body" style="padding: 0;">
+                            <nav>
+                                <ul style="list-style: none;">
+                                    <li>
+                                        <a href="#preferences" class="nav-link"
+                                            style="border-radius: 0; border-bottom: 1px solid var(--border-color);"
+                                            onclick="showSection('preferences'); return false;">
+                                            <i class="fas fa-palette"></i>
+                                            <span>Preferences</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#api" class="nav-link"
+                                            style="border-radius: 0; border-bottom: 1px solid var(--border-color);"
+                                            onclick="showSection('api'); return false;">
+                                            <i class="fas fa-key"></i>
+                                            <span>API Keys</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#notifications" class="nav-link" style="border-radius: 0;"
+                                            onclick="showSection('notifications'); return false;">
+                                            <i class="fas fa-bell"></i>
+                                            <span>Notifications</span>
+                                        </a>
+                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Content -->
+                <div style="grid-column: span 2;">
+                    <!-- Preferences Settings -->
+                    <section class="card card-glass mb-2" id="preferences-section">
+                        <div class="card-header">
+                            <h3 class="card-title">Preferences</h3>
+                        </div>
+                        <div class="card-body">
+                            <!-- Theme Settings -->
+                            <div
+                                style="padding-bottom: var(--spacing-lg); border-bottom: 1px solid var(--border-color); margin-bottom: var(--spacing-lg);">
+                                <h4 style="margin-bottom: var(--spacing-md);">Theme</h4>
+                                <div
+                                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
+                                    <div>
+                                        <div style="font-weight: 500; margin-bottom: 0.25rem;">Dark Mode</div>
+                                        <div style="font-size: var(--font-size-sm); color: var(--text-secondary);">Use
+                                            dark theme across the application</div>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked
+                                            id="darkModeToggle">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Language Settings -->
+                            <div
+                                style="padding-bottom: var(--spacing-lg); border-bottom: 1px solid var(--border-color); margin-bottom: var(--spacing-lg);">
+                                <h4 style="margin-bottom: var(--spacing-md);">Language & Region</h4>
+                                <div class="form-group">
+                                    <label class="form-label">Language</label>
+                                    <select class="form-select">
+                                        <option selected>English</option>
+                                        <option>Spanish</option>
+                                        <option>French</option>
+                                        <option>German</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Timezone</label>
+                                    <select class="form-select">
+                                        <option>UTC-8 (Pacific Time)</option>
+                                        <option>UTC-5 (Eastern Time)</option>
+                                        <option selected>UTC+0 (London)</option>
+                                        <option>UTC+1 (Paris)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Date Format</label>
+                                    <select class="form-select">
+                                        <option>MM/DD/YYYY</option>
+                                        <option selected>DD/MM/YYYY</option>
+                                        <option>YYYY-MM-DD</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Display Settings -->
+                            <div>
+                                <h4 style="margin-bottom: var(--spacing-md);">Display</h4>
+                                <div
+                                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
+                                    <div>
+                                        <div style="font-weight: 500; margin-bottom: 0.25rem;">Compact View</div>
+                                        <div style="font-size: var(--font-size-sm); color: var(--text-secondary);">
+                                            Reduce spacing and padding for more content</div>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox"
+                                            onchange="showToast('Display preference updated!', 'success')">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <div style="font-weight: 500; margin-bottom: 0.25rem;">Show Sidebar</div>
+                                        <div style="font-size: var(--font-size-sm); color: var(--text-secondary);">
+                                            Always show navigation sidebar</div>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked
+                                            onchange="showToast('Sidebar preference updated!', 'success')">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: var(--spacing-sm); margin-top: var(--spacing-lg);">
+                                <button class="button button-primary"
+                                    onclick="showToast('Preferences saved!', 'success')">
+                                    <i class="fas fa-save"></i>
+                                    Save Preferences
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- API Keys -->
+                    <section class="card card-glass mb-2" id="api-section">
+                        <div class="card-header">
+                            <h3 class="card-title">API Keys</h3>
+                            <button class="button button-primary"
+                                onclick="showToast('New API key generated!', 'success')">
+                                <i class="fas fa-plus"></i>
+                                Generate New Key
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <p style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">
+                                Manage your API keys for programmatic access to your analytics data.
+                            </p>
+
+                            <!-- API Key List -->
+                            <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
+                                <!-- API Key Item -->
+                                <div
+                                    style="padding: var(--spacing-md); background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); border-radius: var(--radius-md);">
+                                    <div
+                                        style="display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--spacing-sm);">
+                                        <div>
+                                            <h4
+                                                style="margin-bottom: var(--spacing-xs); font-size: var(--font-size-base);">
+                                                Production API Key</h4>
+                                            <code
+                                                style="font-size: var(--font-size-sm); color: var(--color-primary); background: var(--bg-secondary); padding: 0.25rem 0.5rem; border-radius: var(--radius-sm);">
+                        sk_live_••••••••••••••••1234
+                      </code>
+                                        </div>
+                                        <div style="display: flex; gap: var(--spacing-xs);">
+                                            <button class="button button-secondary button-icon"
+                                                onclick="showToast('API key copied!', 'success')">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                            <button class="button button-secondary button-icon"
+                                                onclick="showToast('API key revoked!', 'warning')">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div style="font-size: var(--font-size-sm); color: var(--text-secondary);">
+                                        Created: Jan 1, 2024 • Last used: 2 hours ago
+                                    </div>
+                                </div>
+
+                                <!-- API Key Item -->
+                                <div
+                                    style="padding: var(--spacing-md); background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); border-radius: var(--radius-md);">
+                                    <div
+                                        style="display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--spacing-sm);">
+                                        <div>
+                                            <h4
+                                                style="margin-bottom: var(--spacing-xs); font-size: var(--font-size-base);">
+                                                Development API Key</h4>
+                                            <code
+                                                style="font-size: var(--font-size-sm); color: var(--color-primary); background: var(--bg-secondary); padding: 0.25rem 0.5rem; border-radius: var(--radius-sm);">
+                        sk_test_••••••••••••••••5678
+                      </code>
+                                        </div>
+                                        <div style="display: flex; gap: var(--spacing-xs);">
+                                            <button class="button button-secondary button-icon"
+                                                onclick="showToast('API key copied!', 'success')">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                            <button class="button button-secondary button-icon"
+                                                onclick="showToast('API key revoked!', 'warning')">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div style="font-size: var(--font-size-sm); color: var(--text-secondary);">
+                                        Created: Dec 15, 2023 • Last used: 3 days ago
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- API Documentation -->
+                            <div
+                                style="margin-top: var(--spacing-xl); padding: var(--spacing-lg); background: var(--bg-secondary); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+                                <h4 style="margin-bottom: var(--spacing-md);">API Documentation</h4>
+                                <p
+                                    style="font-size: var(--font-size-sm); color: var(--text-secondary); margin-bottom: var(--spacing-md);">
+                                    Learn how to integrate our API into your applications.
+                                </p>
+                                <a href="#" class="button button-secondary"
+                                    onclick="showToast('Opening documentation...', 'info'); return false;">
+                                    <i class="fas fa-book"></i>
+                                    View Documentation
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Notifications -->
+                    <section class="card card-glass mb-2" id="notifications-section">
+                        <div class="card-header">
+                            <h3 class="card-title">Notification Settings</h3>
+                        </div>
+                        <div class="card-body">
+                            <p style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">
+                                Choose how you want to be notified about important events.
+                            </p>
+
+                            <!-- Email Notifications -->
+                            <div
+                                style="padding-bottom: var(--spacing-lg); border-bottom: 1px solid var(--border-color); margin-bottom: var(--spacing-lg);">
+                                <h4 style="margin-bottom: var(--spacing-md);">Email Notifications</h4>
+
+                                <div
+                                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
+                                    <div>
+                                        <div style="font-weight: 500; margin-bottom: 0.25rem;">Daily Reports</div>
+                                        <div style="font-size: var(--font-size-sm); color: var(--text-secondary);">
+                                            Receive daily summary reports</div>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+
+                                <div
+                                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
+                                    <div>
+                                        <div style="font-weight: 500; margin-bottom: 0.25rem;">Weekly Reports</div>
+                                        <div style="font-size: var(--font-size-sm); color: var(--text-secondary);">
+                                            Receive weekly summary reports</div>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <div style="font-weight: 500; margin-bottom: 0.25rem;">Transaction Alerts</div>
+                                        <div style="font-size: var(--font-size-sm); color: var(--text-secondary);">Get
+                                            notified about failed transactions</div>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Push Notifications -->
+                            <div>
+                                <h4 style="margin-bottom: var(--spacing-md);">Push Notifications</h4>
+
+                                <div
+                                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
+                                    <div>
+                                        <div style="font-weight: 500; margin-bottom: 0.25rem;">Browser Notifications
+                                        </div>
+                                        <div style="font-size: var(--font-size-sm); color: var(--text-secondary);">Show
+                                            notifications in your browser</div>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <div style="font-weight: 500; margin-bottom: 0.25rem;">Sound Alerts</div>
+                                        <div style="font-size: var(--font-size-sm); color: var(--text-secondary);">Play
+                                            sound for important notifications</div>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: var(--spacing-sm); margin-top: var(--spacing-lg);">
+                                <button class="button button-primary"
+                                    onclick="showToast('Notification settings saved!', 'success')">
+                                    <i class="fas fa-save"></i>
+                                    Save Settings
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/header.js"></script>
+    <script>
+        function showSection(sectionId) {
+            // This would be expanded to show/hide sections dynamically
+            showToast(`Viewing ${sectionId} settings`, 'info');
+        }
+    </script>
+  <script src="../../js/theme.js"></script>
+</body>
+
+</html>

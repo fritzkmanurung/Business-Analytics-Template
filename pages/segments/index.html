@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filters & Segments - Business Analytics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">AnalytixPro</div>
+            </div>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="../dashboard/index.html" class="nav-link">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../reports/index.html" class="nav-link">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../segments/index.html" class="nav-link active">
+                            <i class="fas fa-filter"></i>
+                            <span>Filters & Segments</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../user/help.html" class="nav-link">
+                            <i class="fas fa-question-circle"></i>
+                            <span>Help</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+      <header class="page-header">
+        <div class="header-actions">
+        </div>
+      </header>
+        </aside>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Top Header Bar -->
+        <header class="top-header">
+            <div class="header-left">
+            </div>
+
+                  <div class="header-right">
+        <!-- Notifications -->
+        <div style="position: relative;">
+          <button class="header-icon-button" id="notificationButton">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">3</span>
+          </button>
+          <div class="notification-popup" id="notificationPopup">
+            <div class="notification-header">
+              <span class="notification-title">Notifications</span>
+              <a href="#" onclick="markAllAsRead(); return false;" style="font-size: var(--font-size-xs); color: var(--color-primary);">Mark all as read</a>
+            </div>
+            <div class="notification-list">
+              <div class="notification-item unread">
+                <div class="notification-content">
+                  <div class="notification-icon success"><i class="fas fa-check"></i></div>
+                  <div class="notification-text">
+                    <div class="notification-message">Report generated successfully</div>
+                    <div class="notification-time">5 minutes ago</div>
+                  </div>
+                </div>
+              </div>
+              <div class="notification-item unread">
+                <div class="notification-content">
+                  <div class="notification-icon info"><i class="fas fa-info"></i></div>
+                  <div class="notification-text">
+                    <div class="notification-message">New data import completed</div>
+                    <div class="notification-time">1 hour ago</div>
+                  </div>
+                </div>
+              </div>
+              <div class="notification-item unread">
+                <div class="notification-content">
+                  <div class="notification-icon warning"><i class="fas fa-exclamation"></i></div>
+                  <div class="notification-text">
+                    <div class="notification-message">Server response time increased</div>
+                    <div class="notification-time">2 hours ago</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="notification-footer"><a href="#">View all notifications</a></div>
+          </div>
+        </div>
+        
+        <!-- User Profile -->
+        <div style="position: relative;">
+          <div class="user-profile" id="profileButton">
+            <div class="user-avatar">JS</div>
+            <div class="user-info">
+              <div class="user-name">John Smith</div>
+              <div class="user-role">Administrator</div>
+            </div>
+            <i class="fas fa-chevron-down" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+          </div>
+          <div class="profile-dropdown" id="profileDropdown">
+            <div class="profile-dropdown-header">
+              <div class="profile-dropdown-name">John Smith</div>
+              <div class="profile-dropdown-email">john.smith@example.com</div>
+            </div>
+            <ul class="profile-dropdown-menu">
+              <li class="profile-dropdown-item" onclick="navigateToProfile()"><i class="fas fa-user"></i><span>My Profile</span></li>
+              <li class="profile-dropdown-item" onclick="navigateToSettings()"><i class="fas fa-cog"></i><span>Settings</span></li>
+              <li class="profile-dropdown-item logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i><span>Logout</span>
+                </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+      <nav class="breadcrumb"><div class="breadcrumb-item"><a href="../dashboard/index.html"><i class="fas fa-home"></i> Home</a></div><span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span><div class="breadcrumb-item active">Filters & Segments</div></nav>
+
+      <!-- Page Header -->
+        <div class="header-actions" style="margin-bottom: var(--spacing-md); display: flex; justify-content: flex-end; gap: var(--spacing-sm);">
+          <button class="button button-primary" onclick="window.location.href='../segments/create.html'">
+            <i class="fas fa-plus"></i> Create Segment
+          </button>
+        </div>
+            
+
+            <div class="grid grid-cols-3">
+                <!-- Filter Builder Sidebar -->
+                <div style="grid-column: span 1;">
+                    <div class="card card-glass" style="position: sticky; top: var(--spacing-lg);">
+                        <div class="card-header">
+                            <h3 class="card-title">Filter Builder</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="filterForm">
+                                <!-- Date Range Filter -->
+                                <div class="form-group">
+                                    <label class="form-label">Date Range</label>
+                                    <select class="form-select" id="dateRange">
+                                        <option>Today</option>
+                                        <option>Last 7 Days</option>
+                                        <option selected>Last 30 Days</option>
+                                        <option>Last 90 Days</option>
+                                        <option>Custom Range</option>
+                                    </select>
+                                </div>
+
+                                <!-- Custom Date Inputs -->
+                                <div class="form-group">
+                                    <label class="form-label">From Date</label>
+                                    <input type="date" class="form-input" value="2024-01-01">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">To Date</label>
+                                    <input type="date" class="form-input" value="2024-01-31">
+                                </div>
+
+                                <!-- User Segment -->
+                                <div class="form-group">
+                                    <label class="form-label">User Segment</label>
+                                    <div style="display: flex; flex-direction: column; gap: var(--spacing-xs);">
+                                        <label
+                                            style="display: flex; align-items: center; gap: var(--spacing-xs); cursor: pointer;">
+                                            <input type="checkbox" checked>
+                                            <span style="font-size: var(--font-size-sm);">All Users</span>
+                                        </label>
+                                        <label
+                                            style="display: flex; align-items: center; gap: var(--spacing-xs); cursor: pointer;">
+                                            <input type="checkbox">
+                                            <span style="font-size: var(--font-size-sm);">New Users</span>
+                                        </label>
+                                        <label
+                                            style="display: flex; align-items: center; gap: var(--spacing-xs); cursor: pointer;">
+                                            <input type="checkbox">
+                                            <span style="font-size: var(--font-size-sm);">Returning Users</span>
+                                        </label>
+                                        <label
+                                            style="display: flex; align-items: center; gap: var(--spacing-xs); cursor: pointer;">
+                                            <input type="checkbox">
+                                            <span style="font-size: var(--font-size-sm);">Premium Users</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Product Filter -->
+                                <div class="form-group">
+                                    <label class="form-label">Product</label>
+                                    <select class="form-select" multiple style="min-height: 120px;">
+                                        <option selected>All Products</option>
+                                        <option>Premium Plan</option>
+                                        <option>Basic Plan</option>
+                                        <option>Enterprise Plan</option>
+                                        <option>Starter Plan</option>
+                                    </select>
+                                </div>
+
+                                <!-- Revenue Range -->
+                                <div class="form-group">
+                                    <label class="form-label">Revenue Range</label>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-sm);">
+                                        <input type="number" class="form-input" placeholder="Min" value="0">
+                                        <input type="number" class="form-input" placeholder="Max" value="1000">
+                                    </div>
+                                </div>
+
+                                <!-- Status Filter -->
+                                <div class="form-group">
+                                    <label class="form-label">Transaction Status</label>
+                                    <div style="display: flex; flex-direction: column; gap: var(--spacing-xs);">
+                                        <label
+                                            style="display: flex; align-items: center; gap: var(--spacing-xs); cursor: pointer;">
+                                            <input type="checkbox" checked>
+                                            <span style="font-size: var(--font-size-sm);">Completed</span>
+                                        </label>
+                                        <label
+                                            style="display: flex; align-items: center; gap: var(--spacing-xs); cursor: pointer;">
+                                            <input type="checkbox" checked>
+                                            <span style="font-size: var(--font-size-sm);">Pending</span>
+                                        </label>
+                                        <label
+                                            style="display: flex; align-items: center; gap: var(--spacing-xs); cursor: pointer;">
+                                            <input type="checkbox">
+                                            <span style="font-size: var(--font-size-sm);">Failed</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div style="display: flex; gap: var(--spacing-sm); margin-top: var(--spacing-lg);">
+                                    <button type="submit" class="button button-primary" style="flex: 1;"
+                                        onclick="event.preventDefault(); applyFilters();">
+                                        Apply Filters
+                                    </button>
+                                    <button type="reset" class="button button-secondary"
+                                        onclick="showToast('Filters reset!', 'info')">
+                                        Reset
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content Area -->
+                <div style="grid-column: span 2;">
+                    <!-- Saved Segments -->
+                    <section class="card card-glass mb-2">
+                        <div class="card-header">
+                            <h3 class="card-title">Saved Segments</h3>
+                            <span style="color: var(--text-secondary); font-size: var(--font-size-sm);">5
+                                segments</span>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
+                                <!-- Segment Card -->
+                                <div
+                                    style="padding: var(--spacing-md); background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <h4 style="margin-bottom: var(--spacing-xs); font-size: var(--font-size-base);">
+                                            High-Value Customers</h4>
+                                        <p
+                                            style="margin: 0; font-size: var(--font-size-sm); color: var(--text-secondary);">
+                                            Users with revenue > $500 in last 30 days
+                                        </p>
+                                        <div style="margin-top: var(--spacing-sm);">
+                                            <span class="badge badge-success">245 users</span>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; gap: var(--spacing-xs);">
+                                        <button class="button button-secondary button-icon"
+                                            onclick="showToast('Editing segment...', 'info')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="button button-secondary button-icon"
+                                            onclick="showToast('Segment deleted!', 'success')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Segment Card -->
+                                <div
+                                    style="padding: var(--spacing-md); background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <h4 style="margin-bottom: var(--spacing-xs); font-size: var(--font-size-base);">
+                                            New Subscribers</h4>
+                                        <p
+                                            style="margin: 0; font-size: var(--font-size-sm); color: var(--text-secondary);">
+                                            Users registered in last 7 days
+                                        </p>
+                                        <div style="margin-top: var(--spacing-sm);">
+                                            <span class="badge badge-success">89 users</span>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; gap: var(--spacing-xs);">
+                                        <button class="button button-secondary button-icon"
+                                            onclick="showToast('Editing segment...', 'info')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="button button-secondary button-icon"
+                                            onclick="showToast('Segment deleted!', 'success')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Segment Card -->
+                                <div
+                                    style="padding: var(--spacing-md); background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <h4 style="margin-bottom: var(--spacing-xs); font-size: var(--font-size-base);">
+                                            Churned Users</h4>
+                                        <p
+                                            style="margin: 0; font-size: var(--font-size-sm); color: var(--text-secondary);">
+                                            No activity in last 30 days
+                                        </p>
+                                        <div style="margin-top: var(--spacing-sm);">
+                                            <span class="badge badge-warning">156 users</span>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; gap: var(--spacing-xs);">
+                                        <button class="button button-secondary button-icon"
+                                            onclick="showToast('Editing segment...', 'info')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="button button-secondary button-icon"
+                                            onclick="showToast('Segment deleted!', 'success')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Segment Card -->
+                                <div
+                                    style="padding: var(--spacing-md); background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <h4 style="margin-bottom: var(--spacing-xs); font-size: var(--font-size-base);">
+                                            Enterprise Customers</h4>
+                                        <p
+                                            style="margin: 0; font-size: var(--font-size-sm); color: var(--text-secondary);">
+                                            Users on Enterprise plan
+                                        </p>
+                                        <div style="margin-top: var(--spacing-sm);">
+                                            <span class="badge badge-success">42 users</span>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; gap: var(--spacing-xs);">
+                                        <button class="button button-secondary button-icon"
+                                            onclick="showToast('Editing segment...', 'info')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="button button-secondary button-icon"
+                                            onclick="showToast('Segment deleted!', 'success')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Segment Card -->
+                                <div
+                                    style="padding: var(--spacing-md); background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <h4 style="margin-bottom: var(--spacing-xs); font-size: var(--font-size-base);">
+                                            At-Risk Users</h4>
+                                        <p
+                                            style="margin: 0; font-size: var(--font-size-sm); color: var(--text-secondary);">
+                                            Declining engagement over last 14 days
+                                        </p>
+                                        <div style="margin-top: var(--spacing-sm);">
+                                            <span class="badge badge-danger">78 users</span>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; gap: var(--spacing-xs);">
+                                        <button class="button button-secondary button-icon"
+                                            onclick="showToast('Editing segment...', 'info')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="button button-secondary button-icon"
+                                            onclick="showToast('Segment deleted!', 'success')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Query Builder -->
+                    <section class="card card-glass">
+                        <div class="card-header">
+                            <h3 class="card-title">Advanced Query Builder</h3>
+                        </div>
+                        <div class="card-body">
+                            <div
+                                style="background: var(--bg-secondary); padding: var(--spacing-lg); border-radius: var(--radius-md); border: 1px solid var(--border-color); font-family: monospace; font-size: var(--font-size-sm);">
+                                <div style="color: var(--color-primary);">SELECT</div>
+                                <div style="margin-left: var(--spacing-lg); color: var(--text-secondary);">user_id,
+                                    name, email, revenue</div>
+                                <div style="color: var(--color-primary); margin-top: var(--spacing-sm);">FROM</div>
+                                <div style="margin-left: var(--spacing-lg); color: var(--text-secondary);">users</div>
+                                <div style="color: var(--color-primary); margin-top: var(--spacing-sm);">WHERE</div>
+                                <div style="margin-left: var(--spacing-lg); color: var(--text-secondary);">revenue > 500
+                                </div>
+                                <div style="margin-left: var(--spacing-lg); color: var(--text-secondary);">AND status =
+                                    'active'</div>
+                                <div style="color: var(--color-primary); margin-top: var(--spacing-sm);">ORDER BY</div>
+                                <div style="margin-left: var(--spacing-lg); color: var(--text-secondary);">revenue DESC
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: var(--spacing-sm); margin-top: var(--spacing-lg);">
+                                <button class="button button-primary"
+                                    onclick="showToast('Query executed successfully!', 'success')">
+                                    <i class="fas fa-play"></i>
+                                    Run Query
+                                </button>
+                                <button class="button button-secondary" onclick="showToast('Query saved!', 'success')">
+                                    <i class="fas fa-save"></i>
+                                    Save Query
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../js/main.js"></script>
+  <script src="../../js/header.js"></script>
+    <script>
+        function applyFilters() {
+            showToast('Filters applied successfully!', 'success');
+        }
+    </script>
+  <script src="../../js/theme.js"></script>
+</body>
+
+</html>

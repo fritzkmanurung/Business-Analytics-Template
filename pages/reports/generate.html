@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Report - Business Analytics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">AnalytixPro</div>
+            </div>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="../dashboard/index.html" class="nav-link">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../reports/index.html" class="nav-link active">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../segments/index.html" class="nav-link">
+                            <i class="fas fa-filter"></i>
+                            <span>Filters & Segments</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../user/help.html" class="nav-link">
+                            <i class="fas fa-question-circle"></i>
+                            <span>Help</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+      <header class="page-header">
+        <div class="header-actions">
+        </div>
+      </header>
+        </aside>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Top Header Bar -->
+        <header class="top-header">
+            <div class="header-left"></div>
+
+            <div class="header-right">
+                <!-- Notifications -->
+                <div style="position: relative;">
+                    <button class="header-icon-button" id="notificationButton">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+
+                    <div class="notification-popup" id="notificationPopup">
+                        <div class="notification-header">
+                            <span class="notification-title">Notifications</span>
+                            <a href="#" onclick="markAllAsRead(); return false;"
+                                style="font-size: var(--font-size-xs); color: var(--color-primary);">Mark all as
+                                read</a>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item unread">
+                                <div class="notification-content">
+                                    <div class="notification-icon success">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="notification-text">
+                                        <div class="notification-message">Report generated successfully</div>
+                                        <div class="notification-time">5 minutes ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notification-footer">
+                            <a href="#">View all notifications</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Profile -->
+                <div style="position: relative;">
+                    <div class="user-profile" id="profileButton">
+                        <div class="user-avatar">JS</div>
+                        <div class="user-info">
+                            <div class="user-name">John Smith</div>
+                            <div class="user-role">Administrator</div>
+                        </div>
+                        <i class="fas fa-chevron-down" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                    </div>
+
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <div class="profile-dropdown-header">
+                            <div class="profile-dropdown-name">John Smith</div>
+                            <div class="profile-dropdown-email">john.smith@example.com</div>
+                        </div>
+                        <ul class="profile-dropdown-menu">
+                            <li class="profile-dropdown-item" onclick="navigateToProfile()">
+                                <i class="fas fa-user"></i>
+                                <span>My Profile</span>
+                            </li>
+                            <li class="profile-dropdown-item" onclick="navigateToSettings()">
+                                <i class="fas fa-cog"></i>
+                                <span>Settings</span>
+                            </li>
+                            <li class="profile-dropdown-item logout" onclick="logout()">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>Logout</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+      <nav class="breadcrumb"><div class="breadcrumb-item"><a href="../dashboard/index.html"><i class="fas fa-home"></i> Home</a></div><span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span><div class="breadcrumb-item"><a href="../reports/index.html">Reports</a></div><span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span><div class="breadcrumb-item active">Generate Report</div></nav>
+
+      <!-- Page Header -->
+            
+
+            <div class="grid grid-cols-3">
+                <!-- Report Configuration -->
+                <div style="grid-column: span 2;">
+                    <form id="reportForm" class="card card-glass">
+                        <div class="card-header">
+                            <h3 class="card-title">Report Configuration</h3>
+                        </div>
+                        <div class="card-body">
+                            <!-- Report Type -->
+                            <div class="form-group">
+                                <label class="form-label">Report Type</label>
+                                <select class="form-select" id="reportType">
+                                    <option value="revenue">Revenue Report</option>
+                                    <option value="user">User Activity Report</option>
+                                    <option value="transaction">Transaction Report</option>
+                                    <option value="custom">Custom Report</option>
+                                </select>
+                            </div>
+
+                            <!-- Date Range -->
+                            <div class="grid grid-cols-2">
+                                <div class="form-group">
+                                    <label class="form-label">Start Date</label>
+                                    <input type="date" class="form-input" id="startDate" value="2024-01-01">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">End Date</label>
+                                    <input type="date" class="form-input" id="endDate" value="2024-01-31">
+                                </div>
+                            </div>
+
+                            <!-- Metrics -->
+                            <div class="form-group">
+                                <label class="form-label">Metrics to Include</label>
+                                <div
+                                    style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--spacing-sm);">
+                                    <label
+                                        style="display: flex; align-items: center; gap: var(--spacing-xs); cursor: pointer;">
+                                        <input type="checkbox" checked>
+                                        <span style="font-size: var(--font-size-sm);">Total Revenue</span>
+                                    </label>
+                                    <label
+                                        style="display: flex; align-items: center; gap: var(--spacing-xs); cursor: pointer;">
+                                        <input type="checkbox" checked>
+                                        <span style="font-size: var(--font-size-sm);">Active Users</span>
+                                    </label>
+                                    <label
+                                        style="display: flex; align-items: center; gap: var(--spacing-xs); cursor: pointer;">
+                                        <input type="checkbox" checked>
+                                        <span style="font-size: var(--font-size-sm);">Transactions</span>
+                                    </label>
+                                    <label
+                                        style="display: flex; align-items: center; gap: var(--spacing-xs); cursor: pointer;">
+                                        <input type="checkbox">
+                                        <span style="font-size: var(--font-size-sm);">Conversion Rate</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Grouping -->
+                            <div class="form-group">
+                                <label class="form-label">Group By</label>
+                                <select class="form-select">
+                                    <option>Day</option>
+                                    <option selected>Week</option>
+                                    <option>Month</option>
+                                    <option>Quarter</option>
+                                </select>
+                            </div>
+
+                            <!-- Export Format -->
+                            <div class="form-group">
+                                <label class="form-label">Export Format</label>
+                                <div style="display: flex; gap: var(--spacing-md);">
+                                    <label
+                                        style="display: flex; align-items: center; gap: var(--spacing-xs); cursor: pointer;">
+                                        <input type="radio" name="format" value="pdf" checked>
+                                        <span style="font-size: var(--font-size-sm);">PDF</span>
+                                    </label>
+                                    <label
+                                        style="display: flex; align-items: center; gap: var(--spacing-xs); cursor: pointer;">
+                                        <input type="radio" name="format" value="excel">
+                                        <span style="font-size: var(--font-size-sm);">Excel</span>
+                                    </label>
+                                    <label
+                                        style="display: flex; align-items: center; gap: var(--spacing-xs); cursor: pointer;">
+                                        <input type="radio" name="format" value="csv">
+                                        <span style="font-size: var(--font-size-sm);">CSV</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Actions -->
+                            <div style="display: flex; gap: var(--spacing-sm); margin-top: var(--spacing-xl);">
+                                <button type="submit" class="button button-primary">
+                                    <i class="fas fa-cog fa-spin"></i>
+                                    Generate Report
+                                </button>
+                                <button type="button" class="button button-secondary"
+                                    onclick="document.getElementById('reportForm').reset();">
+                                    <i class="fas fa-redo"></i>
+                                    Reset
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Preview & Templates -->
+                <div style="grid-column: span 1;">
+                    <!-- Report Templates -->
+                    <div class="card card-glass mb-2">
+                        <div class="card-header">
+                            <h4 class="card-title">Templates</h4>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: flex; flex-direction: column; gap: var(--spacing-sm);">
+                                <button class="button button-secondary" style="justify-content: flex-start;"
+                                    onclick="loadTemplate('monthly')">
+                                    <i class="fas fa-file-alt"></i>
+                                    Monthly Summary
+                                </button>
+                                <button class="button button-secondary" style="justify-content: flex-start;"
+                                    onclick="loadTemplate('quarterly')">
+                                    <i class="fas fa-file-alt"></i>
+                                    Quarterly Report
+                                </button>
+                                <button class="button button-secondary" style="justify-content: flex-start;"
+                                    onclick="loadTemplate('annual')">
+                                    <i class="fas fa-file-alt"></i>
+                                    Annual Report
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Reports -->
+                    <div class="card card-glass">
+                        <div class="card-header">
+                            <h4 class="card-title">Recent Reports</h4>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
+                                <div style="cursor: pointer;" onclick="window.location.href='../reports/view.html'">
+                                    <div style="font-weight: 500; margin-bottom: 0.25rem;">Revenue Report</div>
+                                    <div style="font-size: var(--font-size-xs); color: var(--text-muted);">Generated 2
+                                        hours ago</div>
+                                </div>
+                                <div style="cursor: pointer;" onclick="window.location.href='../reports/view.html'">
+                                    <div style="font-weight: 500; margin-bottom: 0.25rem;">User Activity</div>
+                                    <div style="font-size: var(--font-size-xs); color: var(--text-muted);">Generated
+                                        yesterday</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/header.js"></script>
+    <script>
+        document.getElementById('reportForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            showLoading();
+            showToast('Generating report...', 'info');
+
+            setTimeout(() => {
+                hideLoading();
+                showToast('Report generated successfully!', 'success');
+                setTimeout(() => {
+                    window.location.href = '../reports/view.html';
+                }, 1000);
+            }, 2000);
+        });
+
+        function loadTemplate(type) {
+            showToast(`Loading ${type} template...`, 'info');
+        }
+
+        function showLoading() {
+            document.querySelector('button[type="submit"]').disabled = true;
+            document.querySelector('button[type="submit"] i').classList.add('fa-spin');
+        }
+
+        function hideLoading() {
+            document.querySelector('button[type="submit"]').disabled = false;
+            document.querySelector('button[type="submit"] i').classList.remove('fa-spin');
+        }
+    </script>
+  <script src="../../js/theme.js"></script>
+</body>
+
+</html>

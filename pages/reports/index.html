@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - Business Analytics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">AnalytixPro</div>
+            </div>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="../dashboard/index.html" class="nav-link">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../reports/index.html" class="nav-link active">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../segments/index.html" class="nav-link">
+                            <i class="fas fa-filter"></i>
+                            <span>Filters & Segments</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../user/help.html" class="nav-link">
+                            <i class="fas fa-question-circle"></i>
+                            <span>Help</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+      <header class="page-header">
+        <div class="header-actions">
+        </div>
+      </header>
+        </aside>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Top Header Bar -->
+        <header class="top-header">
+            <div class="header-left">
+            </div>
+
+            <div class="header-right">
+                <!-- Notifications -->
+                <div style="position: relative;">
+                    <button class="header-icon-button" id="notificationButton">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <div class="notification-popup" id="notificationPopup">
+                        <div class="notification-header">
+                            <span class="notification-title">Notifications</span>
+                            <a href="#" onclick="markAllAsRead(); return false;"
+                                style="font-size: var(--font-size-xs); color: var(--color-primary);">Mark all as
+                                read</a>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item unread">
+                                <div class="notification-content">
+                                    <div class="notification-icon success"><i class="fas fa-check"></i></div>
+                                    <div class="notification-text">
+                                        <div class="notification-message">Report generated successfully</div>
+                                        <div class="notification-time">5 minutes ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-content">
+                                    <div class="notification-icon info"><i class="fas fa-info"></i></div>
+                                    <div class="notification-text">
+                                        <div class="notification-message">New data import completed</div>
+                                        <div class="notification-time">1 hour ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-content">
+                                    <div class="notification-icon warning"><i class="fas fa-exclamation"></i></div>
+                                    <div class="notification-text">
+                                        <div class="notification-message">Server response time increased</div>
+                                        <div class="notification-time">2 hours ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notification-footer"><a href="#">View all notifications</a></div>
+                    </div>
+                </div>
+
+                <!-- User Profile -->
+                <div style="position: relative;">
+                    <div class="user-profile" id="profileButton">
+                        <div class="user-avatar">JS</div>
+                        <div class="user-info">
+                            <div class="user-name">John Smith</div>
+                            <div class="user-role">Administrator</div>
+                        </div>
+                        <i class="fas fa-chevron-down" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                    </div>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <div class="profile-dropdown-header">
+                            <div class="profile-dropdown-name">John Smith</div>
+                            <div class="profile-dropdown-email">john.smith@example.com</div>
+                        </div>
+                        <ul class="profile-dropdown-menu">
+                            <li class="profile-dropdown-item" onclick="navigateToProfile()"><i
+                                    class="fas fa-user"></i><span>My Profile</span></li>
+                            <li class="profile-dropdown-item" onclick="navigateToSettings()"><i
+                                    class="fas fa-cog"></i><span>Settings</span></li>
+                            <li class="profile-dropdown-item logout" onclick="logout()"><i
+                                    class="fas fa-sign-out-alt"></i><span>Logout</span>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <nav class="breadcrumb">
+                <div class="breadcrumb-item"><a href="../dashboard/index.html"><i class="fas fa-home"></i> Home</a></div><span
+                    class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                <div class="breadcrumb-item active">Reports</div>
+            </nav>
+
+            <!-- Page Header -->
+        <div class="header-actions" style="margin-bottom: var(--spacing-md); display: flex; justify-content: flex-end; gap: var(--spacing-sm);">
+          <button class="button button-secondary" onclick="exportToCSV()">
+            <i class="fas fa-file-csv"></i> Export CSV
+          </button>
+          <button class="button button-secondary" onclick="exportToExcel()">
+            <i class="fas fa-file-excel"></i> Export Excel
+          </button>
+          <button class="button button-primary" onclick="window.location.href='../reports/generate.html'">
+            <i class="fas fa-plus"></i> Generate Report
+          </button>
+        </div>
+            
+
+            <!-- Filter Section -->
+            <section class="card card-glass mb-2">
+                <div class="card-header">
+                    <h3 class="card-title">Filter Reports</h3>
+                </div>
+                <div class="card-body">
+                    <div class="grid grid-cols-4">
+                        <div class="form-group">
+                            <label class="form-label">Date Range</label>
+                            <select class="form-select" id="dateRangeFilter">
+                                <option value="7">Last 7 Days</option>
+                                <option value="30" selected>Last 30 Days</option>
+                                <option value="90">Last 90 Days</option>
+                                <option value="all">All Time</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Status</label>
+                            <select class="form-select" id="statusFilter">
+                                <option value="all">All Status</option>
+                                <option value="completed">Completed</option>
+                                <option value="pending">Pending</option>
+                                <option value="failed">Failed</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Product</label>
+                            <select class="form-select" id="productFilter">
+                                <option value="all">All Products</option>
+                                <option value="Premium Plan">Premium Plan</option>
+                                <option value="Basic Plan">Basic Plan</option>
+                                <option value="Enterprise Plan">Enterprise Plan</option>
+                                <option value="Starter Plan">Starter Plan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Search</label>
+                            <input type="text" class="form-input" id="searchFilter"
+                                placeholder="Search transactions...">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Transactions Table -->
+            <section class="card card-glass">
+                <div class="card-header">
+                    <h3 class="card-title">All Transactions</h3>
+                    <div style="color: var(--text-secondary); font-size: var(--font-size-sm);">
+                        Showing <strong>50</strong> of <strong>1,245</strong> transactions
+                    </div>
+                </div>
+                <div class="table-container" id="reportsTable">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th data-sort="id">Transaction ID</th>
+                                <th data-sort="customer">Customer</th>
+                                <th data-sort="email">Email</th>
+                                <th data-sort="product">Product</th>
+                                <th data-sort="amount">Amount</th>
+                                <th data-sort="status">Status</th>
+                                <th data-sort="date">Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#TXN-001245</td>
+                                <td>John Smith</td>
+                                <td>john.smith@example.com</td>
+                                <td>Premium Plan</td>
+                                <td>$299.00</td>
+                                <td><span class="badge badge-success">Completed</span></td>
+                                <td>2024-01-06</td>
+                                <td>
+                                    <button class="button button-secondary button-icon"
+                                        onclick="window.location.href='../reports/view.html'">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#TXN-001244</td>
+                                <td>Sarah Johnson</td>
+                                <td>sarah.j@example.com</td>
+                                <td>Basic Plan</td>
+                                <td>$99.00</td>
+                                <td><span class="badge badge-success">Completed</span></td>
+                                <td>2024-01-06</td>
+                                <td>
+                                    <button class="button button-secondary button-icon"
+                                        onclick="window.location.href='../reports/view.html'">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#TXN-001243</td>
+                                <td>Michael Brown</td>
+                                <td>m.brown@example.com</td>
+                                <td>Enterprise Plan</td>
+                                <td>$599.00</td>
+                                <td><span class="badge badge-warning">Pending</span></td>
+                                <td>2024-01-05</td>
+                                <td>
+                                    <button class="button button-secondary button-icon"
+                                        onclick="window.location.href='../reports/view.html'">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#TXN-001242</td>
+                                <td>Emily Davis</td>
+                                <td>emily.davis@example.com</td>
+                                <td>Starter Plan</td>
+                                <td>$49.00</td>
+                                <td><span class="badge badge-success">Completed</span></td>
+                                <td>2024-01-05</td>
+                                <td>
+                                    <button class="button button-secondary button-icon"
+                                        onclick="window.location.href='../reports/view.html'">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#TXN-001241</td>
+                                <td>David Wilson</td>
+                                <td>d.wilson@example.com</td>
+                                <td>Premium Plan</td>
+                                <td>$299.00</td>
+                                <td><span class="badge badge-danger">Failed</span></td>
+                                <td>2024-01-05</td>
+                                <td>
+                                    <button class="button button-secondary button-icon"
+                                        onclick="window.location.href='../reports/view.html'">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#TXN-001240</td>
+                                <td>Lisa Anderson</td>
+                                <td>lisa.a@example.com</td>
+                                <td>Basic Plan</td>
+                                <td>$99.00</td>
+                                <td><span class="badge badge-success">Completed</span></td>
+                                <td>2024-01-04</td>
+                                <td>
+                                    <button class="button button-secondary button-icon"
+                                        onclick="window.location.href='../reports/view.html'">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#TXN-001239</td>
+                                <td>Robert Taylor</td>
+                                <td>r.taylor@example.com</td>
+                                <td>Premium Plan</td>
+                                <td>$299.00</td>
+                                <td><span class="badge badge-success">Completed</span></td>
+                                <td>2024-01-04</td>
+                                <td>
+                                    <button class="button button-secondary button-icon"
+                                        onclick="window.location.href='../reports/view.html'">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#TXN-001238</td>
+                                <td>Jennifer Martinez</td>
+                                <td>j.martinez@example.com</td>
+                                <td>Enterprise Plan</td>
+                                <td>$599.00</td>
+                                <td><span class="badge badge-success">Completed</span></td>
+                                <td>2024-01-04</td>
+                                <td>
+                                    <button class="button button-secondary button-icon"
+                                        onclick="window.location.href='../reports/view.html'">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#TXN-001237</td>
+                                <td>William Garcia</td>
+                                <td>w.garcia@example.com</td>
+                                <td>Starter Plan</td>
+                                <td>$49.00</td>
+                                <td><span class="badge badge-warning">Pending</span></td>
+                                <td>2024-01-03</td>
+                                <td>
+                                    <button class="button button-secondary button-icon"
+                                        onclick="window.location.href='../reports/view.html'">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#TXN-001236</td>
+                                <td>Mary Rodriguez</td>
+                                <td>mary.r@example.com</td>
+                                <td>Basic Plan</td>
+                                <td>$99.00</td>
+                                <td><span class="badge badge-success">Completed</span></td>
+                                <td>2024-01-03</td>
+                                <td>
+                                    <button class="button button-secondary button-icon"
+                                        onclick="window.location.href='../reports/view.html'">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Summary Cards -->
+            <div class="grid grid-cols-3 mt-1">
+                <div class="card card-glass">
+                    <div class="card-header">
+                        <h4 class="card-title">Total Revenue</h4>
+                    </div>
+                    <div class="card-body">
+                        <div
+                            style="font-size: var(--font-size-2xl); font-weight: 700; margin-bottom: var(--spacing-sm);">
+                            $124,567
+                        </div>
+                        <div style="font-size: var(--font-size-sm); color: var(--text-secondary);">
+                            From 1,245 transactions
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card card-glass">
+                    <div class="card-header">
+                        <h4 class="card-title">Average Transaction</h4>
+                    </div>
+                    <div class="card-body">
+                        <div
+                            style="font-size: var(--font-size-2xl); font-weight: 700; margin-bottom: var(--spacing-sm);">
+                            $100.05
+                        </div>
+                        <div style="font-size: var(--font-size-sm); color: var(--text-secondary);">
+                            Per transaction
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card card-glass">
+                    <div class="card-header">
+                        <h4 class="card-title">Success Rate</h4>
+                    </div>
+                    <div class="card-body">
+                        <div
+                            style="font-size: var(--font-size-2xl); font-weight: 700; margin-bottom: var(--spacing-sm);">
+                            94.2%
+                        </div>
+                        <div style="font-size: var(--font-size-sm); color: var(--text-secondary);">
+                            1,173 successful transactions
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/header.js"></script>
+    <script src="../../js/data.js"></script>
+    <script src="../../js/datatable.js"></script>
+    <script>
+        function viewTransaction(id) {
+            showToast(`Viewing transaction #TXN-${id}`, 'info');
+        }
+    </script>
+    <script src="../../js/theme.js"></script>
+</body>
+
+</html>

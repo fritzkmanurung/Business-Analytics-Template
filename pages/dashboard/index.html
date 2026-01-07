@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Business Analytics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">AnalytixPro</div>
+      </div>
+
+      <nav>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="../dashboard/index.html" class="nav-link active">
+              <i class="fas fa-chart-line"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="../reports/index.html" class="nav-link">
+              <i class="fas fa-file-alt"></i>
+              <span>Reports</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="../segments/index.html" class="nav-link">
+              <i class="fas fa-filter"></i>
+              <span>Filters & Segments</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="../user/help.html" class="nav-link">
+              <i class="fas fa-question-circle"></i>
+              <span>Help</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <header class="page-header">
+        <div class="header-actions">
+        </div>
+      </header>
+    </aside>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Top Header Bar -->
+    <header class="top-header">
+      <div class="header-left">
+      </div>
+
+      <div class="header-right">
+        <!-- Notifications -->
+        <div style="position: relative;">
+          <button class="header-icon-button" id="notificationButton">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">3</span>
+          </button>
+          <div class="notification-popup" id="notificationPopup">
+            <div class="notification-header">
+              <span class="notification-title">Notifications</span>
+              <a href="#" onclick="markAllAsRead(); return false;"
+                style="font-size: var(--font-size-xs); color: var(--color-primary);">Mark all as read</a>
+            </div>
+            <div class="notification-list">
+              <div class="notification-item unread">
+                <div class="notification-content">
+                  <div class="notification-icon success"><i class="fas fa-check"></i></div>
+                  <div class="notification-text">
+                    <div class="notification-message">Report generated successfully</div>
+                    <div class="notification-time">5 minutes ago</div>
+                  </div>
+                </div>
+              </div>
+              <div class="notification-item unread">
+                <div class="notification-content">
+                  <div class="notification-icon info"><i class="fas fa-info"></i></div>
+                  <div class="notification-text">
+                    <div class="notification-message">New data import completed</div>
+                    <div class="notification-time">1 hour ago</div>
+                  </div>
+                </div>
+              </div>
+              <div class="notification-item unread">
+                <div class="notification-content">
+                  <div class="notification-icon warning"><i class="fas fa-exclamation"></i></div>
+                  <div class="notification-text">
+                    <div class="notification-message">Server response time increased</div>
+                    <div class="notification-time">2 hours ago</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="notification-footer"><a href="#">View all notifications</a></div>
+          </div>
+        </div>
+
+        <!-- User Profile -->
+        <div style="position: relative;">
+          <div class="user-profile" id="profileButton">
+            <div class="user-avatar">JS</div>
+            <div class="user-info">
+              <div class="user-name">John Smith</div>
+              <div class="user-role">Administrator</div>
+            </div>
+            <i class="fas fa-chevron-down" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+          </div>
+          <div class="profile-dropdown" id="profileDropdown">
+            <div class="profile-dropdown-header">
+              <div class="profile-dropdown-name">John Smith</div>
+              <div class="profile-dropdown-email">john.smith@example.com</div>
+            </div>
+            <ul class="profile-dropdown-menu">
+              <li class="profile-dropdown-item" onclick="navigateToProfile()"><i class="fas fa-user"></i><span>My
+                  Profile</span></li>
+              <li class="profile-dropdown-item" onclick="navigateToSettings()"><i
+                  class="fas fa-cog"></i><span>Settings</span></li>
+              <li class="profile-dropdown-item logout" onclick="logout()"><i
+                  class="fas fa-sign-out-alt"></i><span>Logout</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <nav class="breadcrumb">
+        <div class="breadcrumb-item active"><i class="fas fa-home"></i> Home</div>
+      </nav>
+
+      <!-- Page Header -->
+      <div class="header-actions"
+        style="margin-bottom: var(--spacing-md); display: flex; justify-content: flex-end; gap: var(--spacing-sm);">
+        <button class="button button-secondary">
+          <i class="fas fa-download"></i> Export
+        </button>
+        <button class="button button-primary" onclick="window.location.href='../reports/generate.html'">
+          <i class="fas fa-plus"></i> New Report
+        </button>
+      </div>
+
+
+      <!-- Quick Stats -->
+      <section class="grid grid-cols-4 mb-2">
+        <div class="card card-glass stat-card">
+          <span class="stat-label">Total Revenue</span>
+          <span class="stat-value">$124,500</span>
+          <span class="stat-change positive">
+            <i class="fas fa-arrow-up"></i>
+            12.5% from last month
+          </span>
+        </div>
+
+        <div class="card card-glass stat-card">
+          <span class="stat-label">Active Users</span>
+          <span class="stat-value">8,245</span>
+          <span class="stat-change positive">
+            <i class="fas fa-arrow-up"></i>
+            8.2% from last month
+          </span>
+        </div>
+
+        <div class="card card-glass stat-card">
+          <span class="stat-label">Conversion Rate</span>
+          <span class="stat-value">3.24%</span>
+          <span class="stat-change negative">
+            <i class="fas fa-arrow-down"></i>
+            2.1% from last month
+          </span>
+        </div>
+
+        <div class="card card-glass stat-card">
+          <span class="stat-label">Avg Session</span>
+          <span class="stat-value">4m 32s</span>
+          <span class="stat-change positive">
+            <i class="fas fa-arrow-up"></i>
+            5.3% from last month
+          </span>
+        </div>
+      </section>
+
+      <!-- Charts Section -->
+      <div class="grid grid-cols-2 mb-2">
+        <!-- Revenue Chart -->
+        <div class="card card-glass">
+          <div class="card-header">
+            <h3 class="card-title">Revenue Overview</h3>
+            <div class="flex gap-1">
+              <button class="button button-secondary button-icon" onclick="exportChart('revenueChart')">
+                <i class="fas fa-download"></i>
+              </button>
+              <select class="form-select" style="width: auto; padding: 0.375rem 0.75rem;"
+                onchange="updateTimeRange('revenue', this.value)">
+                <option value="7">Last 7 Days</option>
+                <option value="30" selected>Last 30 Days</option>
+                <option value="90">Last 90 Days</option>
+              </select>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
+          </div>
+        </div>
+
+        <!-- User Activity Chart -->
+        <div class="card card-glass">
+          <div class="card-header">
+            <h3 class="card-title">User Activity</h3>
+            <div class="flex gap-1">
+              <button class="button button-secondary button-icon" onclick="exportChart('activityChart')">
+                <i class="fas fa-download"></i>
+              </button>
+              <select class="form-select" style="width: auto; padding: 0.375rem 0.75rem;"
+                onchange="updateTimeRange('activity', this.value)">
+                <option value="7">Last 7 Days</option>
+                <option value="30" selected>Last 30 Days</option>
+                <option value="90">Last 90 Days</option>
+              </select>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="activityChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Analytics -->
+      <div class="grid grid-cols-3 mb-2">
+        <!-- Traffic Sources -->
+        <div class="card card-glass">
+          <div class="card-header">
+            <h3 class="card-title">Traffic Sources</h3>
+          </div>
+          <div class="chart-container" style="height: 250px;">
+            <canvas id="trafficChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Top Products -->
+        <div class="card card-glass">
+          <div class="card-header">
+            <h3 class="card-title">Top Products</h3>
+          </div>
+          <div class="card-body">
+            <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span>Premium Plan</span>
+                <span class="badge badge-success">$45,200</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span>Basic Plan</span>
+                <span class="badge badge-success">$32,100</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span>Enterprise Plan</span>
+                <span class="badge badge-success">$28,500</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span>Starter Plan</span>
+                <span class="badge badge-warning">$18,700</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="card card-glass">
+          <div class="card-header">
+            <h3 class="card-title">Recent Activity</h3>
+          </div>
+          <div class="card-body">
+            <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
+              <div style="display: flex; gap: var(--spacing-sm); align-items: start;">
+                <i class="fas fa-circle"
+                  style="color: var(--color-success); font-size: 0.5rem; margin-top: 0.5rem;"></i>
+                <div>
+                  <div style="font-size: var(--font-size-sm); font-weight: 500;">New user registered</div>
+                  <div style="font-size: var(--font-size-xs); color: var(--text-muted);">2 minutes ago</div>
+                </div>
+              </div>
+              <div style="display: flex; gap: var(--spacing-sm); align-items: start;">
+                <i class="fas fa-circle"
+                  style="color: var(--color-primary); font-size: 0.5rem; margin-top: 0.5rem;"></i>
+                <div>
+                  <div style="font-size: var(--font-size-sm); font-weight: 500;">Report generated</div>
+                  <div style="font-size: var(--font-size-xs); color: var(--text-muted);">15 minutes ago</div>
+                </div>
+              </div>
+              <div style="display: flex; gap: var(--spacing-sm); align-items: start;">
+                <i class="fas fa-circle"
+                  style="color: var(--color-warning); font-size: 0.5rem; margin-top: 0.5rem;"></i>
+                <div>
+                  <div style="font-size: var(--font-size-sm); font-weight: 500;">API key updated</div>
+                  <div style="font-size: var(--font-size-xs); color: var(--text-muted);">1 hour ago</div>
+                </div>
+              </div>
+              <div style="display: flex; gap: var(--spacing-sm); align-items: start;">
+                <i class="fas fa-circle"
+                  style="color: var(--color-success); font-size: 0.5rem; margin-top: 0.5rem;"></i>
+                <div>
+                  <div style="font-size: var(--font-size-sm); font-weight: 500;">Payment received</div>
+                  <div style="font-size: var(--font-size-xs); color: var(--text-muted);">3 hours ago</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Transactions Table -->
+      <section class="card card-glass">
+        <div class="card-header">
+          <h3 class="card-title">Recent Transactions</h3>
+          <a href="../reports/index.html" class="button button-secondary">View All</a>
+        </div>
+        <div class="table-container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Customer</th>
+                <th>Product</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#TXN-001245</td>
+                <td>John Smith</td>
+                <td>Premium Plan</td>
+                <td>$299.00</td>
+                <td><span class="badge badge-success">Completed</span></td>
+                <td>2024-01-06</td>
+              </tr>
+              <tr>
+                <td>#TXN-001244</td>
+                <td>Sarah Johnson</td>
+                <td>Basic Plan</td>
+                <td>$99.00</td>
+                <td><span class="badge badge-success">Completed</span></td>
+                <td>2024-01-06</td>
+              </tr>
+              <tr>
+                <td>#TXN-001243</td>
+                <td>Michael Brown</td>
+                <td>Enterprise Plan</td>
+                <td>$599.00</td>
+                <td><span class="badge badge-warning">Pending</span></td>
+                <td>2024-01-05</td>
+              </tr>
+              <tr>
+                <td>#TXN-001242</td>
+                <td>Emily Davis</td>
+                <td>Starter Plan</td>
+                <td>$49.00</td>
+                <td><span class="badge badge-success">Completed</span></td>
+                <td>2024-01-05</td>
+              </tr>
+              <tr>
+                <td>#TXN-001241</td>
+                <td>David Wilson</td>
+                <td>Premium Plan</td>
+                <td>$299.00</td>
+                <td><span class="badge badge-danger">Failed</span></td>
+                <td>2024-01-05</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="../../js/charts.js"></script>
+  <script src="../../js/main.js"></script>
+  <script src="../../js/header.js"></script>
+  <script src="../../js/theme.js"></script>
+</body>
+
+</html>

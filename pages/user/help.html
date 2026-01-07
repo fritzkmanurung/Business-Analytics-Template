@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center - Business Analytics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">AnalytixPro</div>
+            </div>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="../dashboard/index.html" class="nav-link">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../reports/index.html" class="nav-link">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../segments/index.html" class="nav-link">
+                            <i class="fas fa-filter"></i>
+                            <span>Filters & Segments</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../user/help.html" class="nav-link active">
+                            <i class="fas fa-question-circle"></i>
+                            <span>Help</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+      <header class="page-header">
+        <div class="header-actions">
+        </div>
+      </header>
+        </aside>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Top Header Bar -->
+        <header class="top-header">
+            <div class="header-left"></div>
+
+            <div class="header-right">
+                <!-- Notifications -->
+                <div style="position: relative;">
+                    <button class="header-icon-button" id="notificationButton">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+
+                    <div class="notification-popup" id="notificationPopup">
+                        <div class="notification-header">
+                            <span class="notification-title">Notifications</span>
+                            <a href="#" onclick="markAllAsRead(); return false;"
+                                style="font-size: var(--font-size-xs); color: var(--color-primary);">Mark all as
+                                read</a>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item unread">
+                                <div class="notification-content">
+                                    <div class="notification-icon success">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="notification-text">
+                                        <div class="notification-message">Report generated successfully</div>
+                                        <div class="notification-time">5 minutes ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-content">
+                                    <div class="notification-icon info">
+                                        <i class="fas fa-info"></i>
+                                    </div>
+                                    <div class="notification-text">
+                                        <div class="notification-message">New data import completed</div>
+                                        <div class="notification-time">1 hour ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-content">
+                                    <div class="notification-icon warning">
+                                        <i class="fas fa-exclamation"></i>
+                                    </div>
+                                    <div class="notification-text">
+                                        <div class="notification-message">Server response time increased</div>
+                                        <div class="notification-time">2 hours ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notification-footer">
+                            <a href="#">View all notifications</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Profile -->
+                <div style="position: relative;">
+                    <div class="user-profile" id="profileButton">
+                        <div class="user-avatar">JS</div>
+                        <div class="user-info">
+                            <div class="user-name">John Smith</div>
+                            <div class="user-role">Administrator</div>
+                        </div>
+                        <i class="fas fa-chevron-down" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                    </div>
+
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <div class="profile-dropdown-header">
+                            <div class="profile-dropdown-name">John Smith</div>
+                            <div class="profile-dropdown-email">john.smith@example.com</div>
+                        </div>
+                        <ul class="profile-dropdown-menu">
+                            <li class="profile-dropdown-item" onclick="navigateToProfile()">
+                                <i class="fas fa-user"></i>
+                                <span>My Profile</span>
+                            </li>
+                            <li class="profile-dropdown-item" onclick="navigateToSettings()">
+                                <i class="fas fa-cog"></i>
+                                <span>Settings</span>
+                            </li>
+                            <li class="profile-dropdown-item logout" onclick="logout()">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>Logout</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+      <nav class="breadcrumb"><div class="breadcrumb-item"><a href="../dashboard/index.html"><i class="fas fa-home"></i> Home</a></div><span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span><div class="breadcrumb-item active">Help</div></nav>
+
+      <!-- Page Header -->
+            
+
+            <!-- Search -->
+            <div class="card card-glass mb-2">
+                <div class="card-body">
+                    <div style="position: relative;">
+                        <i class="fas fa-search"
+                            style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+                        <input type="text" class="form-input" placeholder="Search for help articles..."
+                            style="padding-left: 3rem;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="grid grid-cols-3 mb-2">
+                <div class="card card-glass" style="cursor: pointer;"
+                    onclick="showToast('Opening Getting Started guide...', 'info')">
+                    <div class="card-body" style="text-align: center;">
+                        <i class="fas fa-rocket"
+                            style="font-size: 2rem; color: var(--color-primary); margin-bottom: var(--spacing-md);"></i>
+                        <h3 style="margin-bottom: var(--spacing-sm);">Getting Started</h3>
+                        <p style="color: var(--text-secondary); font-size: var(--font-size-sm); margin: 0;">Learn the
+                            basics</p>
+                    </div>
+                </div>
+                <div class="card card-glass" style="cursor: pointer;"
+                    onclick="showToast('Opening Video Tutorials...', 'info')">
+                    <div class="card-body" style="text-align: center;">
+                        <i class="fas fa-play-circle"
+                            style="font-size: 2rem; color: var(--color-primary); margin-bottom: var(--spacing-md);"></i>
+                        <h3 style="margin-bottom: var(--spacing-sm);">Video Tutorials</h3>
+                        <p style="color: var(--text-secondary); font-size: var(--font-size-sm); margin: 0;">Watch and
+                            learn</p>
+                    </div>
+                </div>
+                <div class="card card-glass" style="cursor: pointer;"
+                    onclick="showToast('Opening API Documentation...', 'info')">
+                    <div class="card-body" style="text-align: center;">
+                        <i class="fas fa-code"
+                            style="font-size: 2rem; color: var(--color-primary); margin-bottom: var(--spacing-md);"></i>
+                        <h3 style="margin-bottom: var(--spacing-sm);">API Docs</h3>
+                        <p style="color: var(--text-secondary); font-size: var(--font-size-sm); margin: 0;">Developer
+                            resources</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="card card-glass">
+                <div class="card-header">
+                    <h3 class="card-title">Frequently Asked Questions</h3>
+                </div>
+                <div class="card-body">
+                    <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
+                        <details
+                            style="padding: var(--spacing-md); border: 1px solid var(--border-color); border-radius: var(--radius-md);">
+                            <summary style="cursor: pointer; font-weight: 500; margin-bottom: var(--spacing-sm);">How do
+                                I create a new report?</summary>
+                            <p style="color: var(--text-secondary); font-size: var(--font-size-sm); margin: 0;">Navigate
+                                to the Reports page and click the "Generate Report" button. Select your desired date
+                                range, filters, and export format, then click "Generate".</p>
+                        </details>
+
+                        <details
+                            style="padding: var(--spacing-md); border: 1px solid var(--border-color); border-radius: var(--radius-md);">
+                            <summary style="cursor: pointer; font-weight: 500; margin-bottom: var(--spacing-sm);">How do
+                                I export data?</summary>
+                            <p style="color: var(--text-secondary); font-size: var(--font-size-sm); margin: 0;">You can
+                                export data in CSV or Excel format from the Reports page. Apply your desired filters,
+                                then click one of the export buttons at the top of the page.</p>
+                        </details>
+
+                        <details
+                            style="padding: var(--spacing-md); border: 1px solid var(--border-color); border-radius: var(--radius-md);">
+                            <summary style="cursor: pointer; font-weight: 500; margin-bottom: var(--spacing-sm);">Can I
+                                customize the dashboard widgets?</summary>
+                            <p style="color: var(--text-secondary); font-size: var(--font-size-sm); margin: 0;">Yes! Go
+                                to Settings > Dashboard Preferences to customize which widgets appear on your dashboard
+                                and their order.</p>
+                        </details>
+
+                        <details
+                            style="padding: var(--spacing-md); border: 1px solid var(--border-color); border-radius: var(--radius-md);">
+                            <summary style="cursor: pointer; font-weight: 500; margin-bottom: var(--spacing-sm);">How do
+                                I manage API keys?</summary>
+                            <p style="color: var(--text-secondary); font-size: var(--font-size-sm); margin: 0;">Go to
+                                Settings > API Keys to generate, view, copy, or revoke your API keys. Make sure to store
+                                them securely as they cannot be retrieved after creation.</p>
+                        </details>
+
+                        <details
+                            style="padding: var(--spacing-md); border: 1px solid var(--border-color); border-radius: var(--radius-md);">
+                            <summary style="cursor: pointer; font-weight: 500; margin-bottom: var(--spacing-sm);">What
+                                browsers are supported?</summary>
+                            <p style="color: var(--text-secondary); font-size: var(--font-size-sm); margin: 0;">We
+                                support the latest versions of Chrome, Firefox, Safari, and Edge. For the best
+                                experience, we recommend using Chrome or Firefox.</p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/header.js"></script>
+  <script src="../../js/theme.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Report - Business Analytics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">AnalytixPro</div>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="../dashboard/index.html" class="nav-link"><i
+                                class="fas fa-chart-line"></i><span>Dashboard</span></a></li>
+                    <li class="nav-item"><a href="../reports/index.html" class="nav-link active"><i
+                                class="fas fa-file-alt"></i><span>Reports</span></a></li>
+                    <li class="nav-item"><a href="../segments/index.html" class="nav-link"><i
+                                class="fas fa-filter"></i><span>Filters & Segments</span></a></li>
+
+                    <li class="nav-item"><a href="../user/help.html" class="nav-link"><i
+                                class="fas fa-question-circle"></i><span>Help</span></a></li>
+                </ul>
+            </nav>
+
+            <header class="page-header">
+                <div class="header-actions">
+                </div>
+            </header>
+        </aside>
+
+        <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+
+        <header class="top-header">
+            <div class="header-left"></div>
+            <div class="header-right">
+                <div style="position: relative;">
+                    <button class="header-icon-button" id="notificationButton">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <div class="notification-popup" id="notificationPopup">
+                        <div class="notification-header">
+                            <span class="notification-title">Notifications</span>
+                            <a href="#" onclick="markAllAsRead(); return false;"
+                                style="font-size: var(--font-size-xs); color: var(--color-primary);">Mark all as
+                                read</a>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item unread">
+                                <div class="notification-content">
+                                    <div class="notification-icon success"><i class="fas fa-check"></i></div>
+                                    <div class="notification-text">
+                                        <div class="notification-message">Report generated successfully</div>
+                                        <div class="notification-time">Just now</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notification-footer"><a href="#">View all notifications</a></div>
+                    </div>
+                </div>
+                <div style="position: relative;">
+                    <div class="user-profile" id="profileButton">
+                        <div class="user-avatar">JS</div>
+                        <div class="user-info">
+                            <div class="user-name">John Smith</div>
+                            <div class="user-role">Administrator</div>
+                        </div>
+                        <i class="fas fa-chevron-down" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                    </div>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <div class="profile-dropdown-header">
+                            <div class="profile-dropdown-name">John Smith</div>
+                            <div class="profile-dropdown-email">john.smith@example.com</div>
+                        </div>
+                        <ul class="profile-dropdown-menu">
+                            <li class="profile-dropdown-item" onclick="navigateToProfile()"><i
+                                    class="fas fa-user"></i><span>My Profile</span></li>
+                            <li class="profile-dropdown-item" onclick="navigateToSettings()"><i
+                                    class="fas fa-cog"></i><span>Settings</span></li>
+                            <li class="profile-dropdown-item logout" onclick="logout()"><i
+                                    class="fas fa-sign-out-alt"></i><span>Logout</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <nav class="breadcrumb">
+                <div class="breadcrumb-item"><a href="../dashboard/index.html"><i class="fas fa-home"></i> Home</a></div><span
+                    class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                <div class="breadcrumb-item"><a href="../reports/index.html">Reports</a></div><span
+                    class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                <div class="breadcrumb-item active">Show Report</div>
+            </nav>
+
+            <div class="header-actions"
+                style="margin-bottom: var(--spacing-md); display: flex; justify-content: flex-end; gap: var(--spacing-sm);">
+                <button class="button button-secondary">
+                    <i class="fas fa-download"></i> Export
+                </button>
+                <button class="button button-primary" onclick="window.location.href='../reports/generate.html'">
+                    <i class="fas fa-plus"></i> New Report
+                </button>
+            </div>
+
+
+            <!-- Summary Stats -->
+            <div class="grid grid-cols-4 mb-2">
+                <div class="card card-glass">
+                    <div class="stat-card">
+                        <div class="stat-label">Total Revenue</div>
+                        <div class="stat-value">$124,567</div>
+                        <div class="stat-change positive"><i class="fas fa-arrow-up"></i>12.5% from last month</div>
+                    </div>
+                </div>
+                <div class="card card-glass">
+                    <div class="stat-card">
+                        <div class="stat-label">Transactions</div>
+                        <div class="stat-value">1,245</div>
+                        <div class="stat-change positive"><i class="fas fa-arrow-up"></i>8.3% from last month</div>
+                    </div>
+                </div>
+                <div class="card card-glass">
+                    <div class="stat-card">
+                        <div class="stat-label">Avg Transaction</div>
+                        <div class="stat-value">$100.05</div>
+                        <div class="stat-change positive"><i class="fas fa-arrow-up"></i>3.2% from last month</div>
+                    </div>
+                </div>
+                <div class="card card-glass">
+                    <div class="stat-card">
+                        <div class="stat-label">Success Rate</div>
+                        <div class="stat-value">94.2%</div>
+                        <div class="stat-change negative"><i class="fas fa-arrow-down"></i>1.1% from last month</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="grid grid-cols-2 mb-2">
+                <div class="card card-glass">
+                    <div class="card-header">
+                        <h3 class="card-title">Revenue Trend</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="revenueTrendChart"></canvas>
+                    </div>
+                </div>
+                <div class="card card-glass">
+                    <div class="card-header">
+                        <h3 class="card-title">Revenue by Product</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="productRevenueChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Data Table -->
+            <div class="card card-glass">
+                <div class="card-header">
+                    <h3 class="card-title">Detailed Breakdown</h3>
+                </div>
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Transactions</th>
+                                <th>Revenue</th>
+                                <th>Avg Value</th>
+                                <th>Success Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Jan 1, 2024</td>
+                                <td>45</td>
+                                <td>$4,230</td>
+                                <td>$94.00</td>
+                                <td>95.5%</td>
+                            </tr>
+                            <tr>
+                                <td>Jan 2, 2024</td>
+                                <td>52</td>
+                                <td>$5,120</td>
+                                <td>$98.46</td>
+                                <td>96.2%</td>
+                            </tr>
+                            <tr>
+                                <td>Jan 3, 2024</td>
+                                <td>38</td>
+                                <td>$3,890</td>
+                                <td>$102.37</td>
+                                <td>92.1%</td>
+                            </tr>
+                            <tr>
+                                <td>Jan 4, 2024</td>
+                                <td>61</td>
+                                <td>$6,340</td>
+                                <td>$103.93</td>
+                                <td>95.1%</td>
+                            </tr>
+                            <tr>
+                                <td>Jan 5, 2024</td>
+                                <td>49</td>
+                                <td>$4,987</td>
+                                <td>$101.78</td>
+                                <td>93.8%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../js/main.js"></script>
+    <script src="../../js/header.js"></script>
+    <script>
+        // Revenue Trend Chart
+        new Chart(document.getElementById('revenueTrendChart'), {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [{
+                    label: 'Revenue',
+                    data: [28450, 32890, 29650, 33577],
+                    borderColor: 'rgb(139, 92, 246)',
+                    backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        // Product Revenue Chart
+        new Chart(document.getElementById('productRevenueChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Premium Plan', 'Basic Plan', 'Enterprise', 'Starter'],
+                datasets: [{
+                    data: [45620, 28340, 35890, 14717],
+                    backgroundColor: ['rgb(139, 92, 246)', 'rgb(59, 130, 246)', 'rgb(236, 72, 153)', 'rgb(251, 146, 60)']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+    </script>
+    <script src="../../js/theme.js"></script>
+</body>
+
+</html>
